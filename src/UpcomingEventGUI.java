@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -30,20 +31,34 @@ public class UpcomingEventGUI extends JFrame implements ActionListener{
 	
 	public void actionPerformed(ActionEvent e) {
 		int action = Integer.parseInt(e.getActionCommand());
+		int rowSelected = table1.getSelectedRow();
 		switch (action) {
 		case 0: //Add Event
 			AddEventGUI newAE=new AddEventGUI();
 			newAE.openAE();
 			break;
 		case 1: //Change Date
-			int rowSelected = table1.getSelectedRow();
+			
 			int selectedDate = urList.get(rowSelected).getRemindID();
 			String selectedName = urList.get(rowSelected).getEventName();
 			System.out.println(selectedName+selectedDate);
 			int dateValue = urList.get(rowSelected).getEventDate().getID();
 			ChangeDateGUI newCD=new ChangeDateGUI();
-			newCD.openCD();
-			System.out.println(0);
+			int newDateValue = newCD.openCD(selectedName, selectedDate);
+			System.out.println(newDateValue);
+		case 2:
+			EventList newList = new EventList();
+			newList.readFile();
+			int opt = JOptionPane.YES_NO_OPTION;
+			int confirm2 = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this event?", "Warning", opt);
+			if (confirm2 == 0) {
+				newList.remove(urList.get(rowSelected));
+				newList.writeFile();
+				setVisible(false);
+			}
+			else {
+				
+			}
 			break;
 
 		}
@@ -123,13 +138,6 @@ public class UpcomingEventGUI extends JFrame implements ActionListener{
 		
 		tableContainer.setBounds(10, 23, 414, 228);
 		contentPane.add(tableContainer);
-		
-		JButton btnEditEvent = new JButton("Change Date");
-		btnEditEvent.addActionListener(this);
-		btnEditEvent.setActionCommand("1");
-		btnEditEvent.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		btnEditEvent.setBounds(163, 278, 89, 23);
-		contentPane.add(btnEditEvent);
 		
 		JButton btnAddEvent = new JButton("Add Event");
 		btnAddEvent.setFont(new Font("Tahoma", Font.PLAIN, 10));

@@ -62,8 +62,8 @@ public class EditTypeGUI extends JFrame implements ActionListener {
 			t1.readFile();
 			String toRemove = this.type;
 			if (toRemove == null) toRemove = t1.getTypes().get(0);
-			int lol = JOptionPane.YES_NO_OPTION;
-			int confirm2 = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete Event Type: " + toRemove +"?", "Warning", lol);
+			int opt = JOptionPane.YES_NO_OPTION;
+			int confirm2 = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete Event Type: " + toRemove +"?", "Warning", opt);
 			if (confirm2 == 0) {
 				if(toRemove != null) {
 					t1.remove(toRemove);

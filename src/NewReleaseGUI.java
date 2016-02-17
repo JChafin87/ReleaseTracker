@@ -1,23 +1,69 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.awt.EventQueue;
+import java.util.LinkedList;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
-import java.awt.Color;
-import java.awt.Font;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 
 
-public class NewReleaseGUI extends JFrame {
+public class NewReleaseGUI extends JFrame implements ActionListener{
 
 	private JPanel contentPane;
+	private JTable table;
 	private JTable table1;
+	private DefaultTableModel nrTable;
+	private LinkedList<Event> nrList;
+	
+	
+	
+	public void actionPerformed(ActionEvent e) {
+		int action = Integer.parseInt(e.getActionCommand());
+		int rowSelected = table1.getSelectedRow();
+		switch (action) {
+		case 0: //Add Event
+			AddEventGUI newAE=new AddEventGUI();
+			newAE.openAE();
+			break;
+		case 1: //Change Date
+			
+			int selectedDate = nrList.get(rowSelected).getRemindID();
+			String selectedName = nrList.get(rowSelected).getEventName();
+			System.out.println(selectedName+selectedDate);
+			int dateValue = nrList.get(rowSelected).getEventDate().getID();
+			ChangeDateGUI newCD=new ChangeDateGUI();
+			int newDateValue = newCD.openCD(selectedName, selectedDate);
+			System.out.println(newDateValue);
+		case 2:
+			EventList newList = new EventList();
+			newList.readFile();
+			int opt = JOptionPane.YES_NO_OPTION;
+			int confirm2 = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this event?", "Warning", opt);
+			if (confirm2 == 0) {
+				newList.remove(nrList.get(rowSelected));
+				newList.writeFile();
+				setVisible(false);
+			}
+			else {
+				
+			}
+			break;
 
+		}
+		
+	}
 	/**
 	 * Launch the application.
 	 */
@@ -39,20 +85,19 @@ public class NewReleaseGUI extends JFrame {
 	 */
 	public NewReleaseGUI() {
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		setBounds(100, 100, 450, 423);
+		setBounds(100, 100, 450, 392);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(240, 240, 240));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+
 		
-		//Get Event List
 		EventList eTable = new EventList();
 		eTable.readFile();
 		
 		//Create TableModel
 		String[] col1 = {"Date","Name","Type"};
-		DefaultTableModel nrTable = new DefaultTableModel(col1,0);
+		nrTable = new DefaultTableModel(col1,0);
 		
 		//temp variables to populate Table
 		EventDate tempDate = new EventDate();
@@ -60,47 +105,49 @@ public class NewReleaseGUI extends JFrame {
 		String tempName = "Mario";
 		String tempType = "Game";
 		
-		//populate Table and compare to today
+		//compare to today
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		Calendar today = Calendar.getInstance();
 		int todayID = Integer.valueOf(sdf.format(today.getTime()));
-		for (int i = 0; i <eTable.eventList.size();i++) {
+		
+		
+		nrList = new LinkedList<Event>();
+		
+		//weeds out input file Events that have already released
+		for (int i = 0; i <eTable.getList().size();i++) {
 			Event tempEvent = new Event();
-			tempEvent = eTable.eventList.get(i);
+			tempEvent = eTable.getList().get(i);
 			int idCheck = tempEvent.getRemindID();
 			if(idCheck <= todayID) {
-				tempEvent = eTable.eventList.get(i);
 				tempDate = tempEvent.getEventDate();
 				tempDateName = tempDate.toString();
 				tempName = tempEvent.getEventName();
 				tempType = tempEvent.getEventTypeName();
 				Object[] data = {tempDateName, tempName, tempType};
+				nrList.add(tempEvent);
 				nrTable.addRow(data);
 			}
 		}
 		
-		JTable table1 = new JTable(nrTable);
+		table1 = new JTable(nrTable);
 		table1.setFont(new Font("Arial", Font.PLAIN, 10));
 		table1.setBackground(new Color(255, 255, 255));
 		JScrollPane tableContainer = new JScrollPane(table1);
 		
 		
+		
 		tableContainer.setBounds(10, 23, 414, 228);
 		contentPane.add(tableContainer);
 		
-		JButton btnGotIt = new JButton("Got It!");
-		btnGotIt.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		btnGotIt.setBounds(26, 289, 89, 23);
-		contentPane.add(btnGotIt);
+		JButton btnRemoveEvent = new JButton("Remove Event");
+		btnRemoveEvent.addActionListener(this);
+		btnRemoveEvent.setActionCommand("2");
+		btnRemoveEvent.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		btnRemoveEvent.setBounds(163, 277, 110, 23);
+		contentPane.add(btnRemoveEvent);
 		
-		JButton btnChangeDate = new JButton("Change Date");
-		btnChangeDate.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		btnChangeDate.setBounds(155, 289, 105, 23);
-		contentPane.add(btnChangeDate);
-		
-		JButton btnRemindMeLater = new JButton("Remind Me Later");
-		btnRemindMeLater.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		btnRemindMeLater.setBounds(294, 289, 130, 23);
-		contentPane.add(btnRemindMeLater);
+		JLabel lblNewReleases = new JLabel("New Releases");
+		lblNewReleases.setBounds(163, -2, 137, 14);
+		contentPane.add(lblNewReleases);
 	}
 }

@@ -105,7 +105,19 @@ public class EventList {
 			eventList = testList;
 		}
 	}
-	
+
+	public void remove(Event ev){
+		LinkedList<Event> updatedList = new LinkedList<Event>();
+		updatedList = this.getList();
+		LinkedList<Event> returnedList = new LinkedList<Event>();
+		for (int i = 0; i<updatedList.size(); i++)
+			if(!(ev.getEventName().equals(updatedList.get(i).getEventName())) && ev.getRemindID() != updatedList.get(i).getRemindID()) {
+				returnedList.add(updatedList.get(i));
+				
+			}
+		this.eventList = returnedList;
+		
+	}
 	public boolean isEmpty() {
 		LinkedList<Event> empty = new LinkedList<Event>();
 		if (empty.isEmpty()) {

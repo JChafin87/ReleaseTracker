@@ -19,10 +19,12 @@ public class ChangeDateGUI extends JFrame implements ActionListener {
 	private JComboBox comboBox;
 	private JComboBox comboBox_1;
 	private JComboBox comboBox_2;
+	private JButton btnAccept;
 	private int finalValue;
 	public int[] comboValues = {2016,01,01};
 	private Event ev;
 	private JFrame frame;
+	boolean open;
 
 	/**
 	 * Launch the application.
@@ -48,6 +50,14 @@ public class ChangeDateGUI extends JFrame implements ActionListener {
 					
 					ChangeDateGUI frame = new ChangeDateGUI();
 					frame.setVisible(true);
+					open = true;
+					while (open) {
+						try {
+						    Thread.sleep(1000);
+						} catch(InterruptedException ex) {
+						    Thread.currentThread().interrupt();
+						}
+					}
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -85,13 +95,16 @@ public class ChangeDateGUI extends JFrame implements ActionListener {
 		case 4:
 			JButton b1 = (JButton) e.getSource();
 			EventList eList = new EventList();
-			JOptionPane.showMessageDialog(frame, "The type: has been added.");
+			JOptionPane.showMessageDialog(frame, "The date has been changed.");
 			setVisible(false);
+			finalValue = comboValues[0]*10000+comboValues[1]*100+comboValues[2];
+			open = false;
 			break;
 			
 			
+			
 		}
-		finalValue = comboValues[0]*10000+comboValues[1]*100+comboValues[2];
+		
 		
 		
 		
@@ -121,28 +134,28 @@ public class ChangeDateGUI extends JFrame implements ActionListener {
 		lblYear.setBounds(62, 156, 46, 14);
 		contentPane.add(lblYear);
 		
-		JComboBox comboBox = new JComboBox();
+		comboBox = new JComboBox();
 		comboBox.addActionListener(this);
 		comboBox.setActionCommand("1");
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"}));
 		comboBox.setBounds(134, 49, 119, 20);
 		contentPane.add(comboBox);
 		
-		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1 = new JComboBox();
 		comboBox_1.addActionListener(this);
 		comboBox_1.setActionCommand("2");
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));
 		comboBox_1.setBounds(134, 106, 46, 20);
 		contentPane.add(comboBox_1);
 		
-		JComboBox comboBox_2 = new JComboBox();
+		comboBox_2 = new JComboBox();
 		comboBox_2.addActionListener(this);
 		comboBox_2.setActionCommand("0");
 		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"2016", "2017", "2018", "2019", "2020"}));
 		comboBox_2.setBounds(134, 153, 77, 20);
 		contentPane.add(comboBox_2);
 		
-		JButton btnAccept = new JButton("Accept");
+		btnAccept = new JButton("Accept");
 		btnAccept.addActionListener(this);
 		btnAccept.setActionCommand("4");
 		btnAccept.setBounds(164, 205, 89, 23);
