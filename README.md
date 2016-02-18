@@ -282,7 +282,69 @@ Creates a new instance of the EditTypeGUI.
 | void | **openET**() |
 | | _Method to initialize EditTypeGUI from a separate JFrame._ |
 
+---
+###NewReleaseGUI
+---
 
+A window that shows the user's saved events, where the event's release date is before the current calendar day. It implements the Class ActionListener.
+
+####Constructor
+
+NewReleaseGUI()
+
+Creates a new NewReleaseGUI window.
+
+####Attributes
+
+| Attribute | Description |
+| ------------- |:-------------:|
+| private JPanel contentPane | The container of our Swing objects. |
+| private JTable userTable | The Swing object JTable that holds our table information. |
+| private DefaultTableModel nrTable | The table model that holds our user's newly released Events. |
+| private JButton btnRemoveEvent | A JButton that allows the user to remove the event they've selected from their EventList. |
+|private LinkedList\<Event\> nrList | A LinkedList that holds our newly released events. This is needed if the user selects to remove an event from the table. |
+
+####Methods
+
+| Returns | Method|
+| ------------- |:-------------:|
+| void | **actionPerformed**(ActionEvent e) |
+| | _Overrides method in ActionListener. Used to capture the user's interactions with the frame's Swing objects._ |
+| void | **openNR**() |
+| | _Method to initialize NewReleaseGUI from a separate JFrame._ |
+
+
+---
+###UpcomingEventGUI
+---
+
+A window that shows the user's saved events, where the event's release date is after the current calendar day. It implements the Class ActionListener.
+
+####Constructor
+
+UpcomingEventGUI()
+
+Creates a new UpcomingEventGUI window.
+
+####Attributes
+
+| Attribute | Description |
+| ------------- |:-------------:|
+| private JPanel contentPane | The container of our Swing objects. |
+| private JTable userTable | The Swing object JTable that holds our table information. |
+| private DefaultTableModel ueTable | The table model that holds our user's upcoming Events. |
+| private JButton btnAddEvent | A JButton that opens a new AddEventGUI. |
+| private JButton btnRemoveEvent | A JButton that allows the user to remove the event they've selected from their EventList. |
+|private LinkedList\<Event\> ueList | A LinkedList that holds our upcoming release Events. This is needed if the user selects to remove an event from the table. |
+
+####Methods
+
+| Returns | Method|
+| ------------- |:-------------:|
+| void | **actionPerformed**(ActionEvent e) |
+| | _Overrides method in ActionListener. Used to capture the user's interactions with the frame's Swing objects._ |
+| void | **openUE**() |
+| | _Method to initialize UpcomingEventGUI from a separate JFrame._ |
 
 
 -
