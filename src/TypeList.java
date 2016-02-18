@@ -8,6 +8,10 @@ import java.util.LinkedList;
 
 public class TypeList {
 	public LinkedList<String> types;
+	
+	public TypeList() {
+		
+	}
 
 	public LinkedList<String> getTypes() {
 		return types;
@@ -15,11 +19,6 @@ public class TypeList {
 
 	public void setTypes(LinkedList<String> types) {
 		this.types = types;
-	}
-
-
-	public TypeList() {
-	
 	}
 
 	public void readFile() {
@@ -88,10 +87,12 @@ public class TypeList {
 			
 		}
 	}
+	
 	public String[] toStringArray() {
-		String[] sA = new String[this.types.size()];
+		String[] sA = new String[this.types.size()+1];
+		sA[0] = "Choose Type";
 		for (int i = 0; i<this.types.size(); i++) {
-			sA[i] = this.types.get(i);
+			sA[i+1] = this.types.get(i);
 		}
 		return sA;
 	}

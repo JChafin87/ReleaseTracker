@@ -22,31 +22,21 @@ import javax.swing.JLabel;
 public class NewReleaseGUI extends JFrame implements ActionListener{
 
 	private JPanel contentPane;
-	private JTable table;
-	private JTable table1;
+	private JTable userTable;
 	private DefaultTableModel nrTable;
 	private LinkedList<Event> nrList;
-	
+	private JButton btnRemoveEvent;
 	
 	
 	public void actionPerformed(ActionEvent e) {
 		int action = Integer.parseInt(e.getActionCommand());
-		int rowSelected = table1.getSelectedRow();
+		int rowSelected = userTable.getSelectedRow();
 		switch (action) {
 		case 0: //Add Event
 			AddEventGUI newAE=new AddEventGUI();
 			newAE.openAE();
 			break;
-		case 1: //Change Date
-			
-			int selectedDate = nrList.get(rowSelected).getRemindID();
-			String selectedName = nrList.get(rowSelected).getEventName();
-			System.out.println(selectedName+selectedDate);
-			int dateValue = nrList.get(rowSelected).getEventDate().getID();
-			ChangeDateGUI newCD=new ChangeDateGUI();
-			int newDateValue = newCD.openCD(selectedName, selectedDate);
-			System.out.println(newDateValue);
-		case 2:
+		case 1:
 			EventList newList = new EventList();
 			newList.readFile();
 			int opt = JOptionPane.YES_NO_OPTION;
@@ -129,19 +119,19 @@ public class NewReleaseGUI extends JFrame implements ActionListener{
 			}
 		}
 		
-		table1 = new JTable(nrTable);
-		table1.setFont(new Font("Arial", Font.PLAIN, 10));
-		table1.setBackground(new Color(255, 255, 255));
-		JScrollPane tableContainer = new JScrollPane(table1);
+		userTable = new JTable(nrTable);
+		userTable.setFont(new Font("Arial", Font.PLAIN, 10));
+		userTable.setBackground(new Color(255, 255, 255));
+		JScrollPane tableContainer = new JScrollPane(userTable);
 		
 		
 		
 		tableContainer.setBounds(10, 23, 414, 228);
 		contentPane.add(tableContainer);
 		
-		JButton btnRemoveEvent = new JButton("Remove Event");
+		btnRemoveEvent = new JButton("Remove Event");
 		btnRemoveEvent.addActionListener(this);
-		btnRemoveEvent.setActionCommand("2");
+		btnRemoveEvent.setActionCommand("1");
 		btnRemoveEvent.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		btnRemoveEvent.setBounds(163, 277, 110, 23);
 		contentPane.add(btnRemoveEvent);

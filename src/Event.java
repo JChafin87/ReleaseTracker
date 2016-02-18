@@ -14,19 +14,24 @@ public class Event implements Comparable<Event> {
 	public String eventTypeName;
 	public int remindID;
 	
+	public Event() {
+		
+	}
+	
+	public Event(String eN, EventDate eD, String eT, int rID) {
+		this.eventName = eN;
+		this.eventDate = eD;
+		this.eventTypeName =eT;
+		this.remindID = rID;
+	}
+	
+
 	
 	public String getEventName() {
 		return eventName;
 	}
-	public Event(String e, EventDate d, String t, int r) {
-		this.eventName = e;
-		this.eventDate = d;
-		this.eventTypeName =t;
-		this.remindID = r;
-	}
-	public Event() {
-		
-	}
+	
+
 	
 	public void setEventName(String eventName) {
 		this.eventName = eventName;
@@ -63,17 +68,8 @@ public class Event implements Comparable<Event> {
 			return -1;
 		}
 	}
-	private int isRemoved(String e) {
-		if (e==this.eventTypeName) {
-			return 1;
-		}
-		else {
-			return 0;
-		}
-			
-		
-	}
-	private void remind(int i) {
+
+	private void remindChange(int i) {
 		remindID = this.remindID + i;
 	}
 	

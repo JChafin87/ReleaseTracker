@@ -118,40 +118,11 @@ public class EventList {
 		this.eventList = returnedList;
 		
 	}
-	public boolean isEmpty() {
-		LinkedList<Event> empty = new LinkedList<Event>();
-		if (empty.isEmpty()) {
-			return true;
-			
-		}
-		else {
-			return false;
-		}
-	}
+	
 	
 	
 
-	public void writeFile(Event ev) {
-		LinkedList<Event> e = this.eventList;
-		try{
-			PrintWriter writer = new PrintWriter("events.dat", "UTF-8");
-			for (int i = 0; i<e.size(); i++) {
-				writer.println(e.get(i).getEventDate().getID());
-				writer.println(e.get(i).getEventName());
-				writer.println(e.get(i).getEventTypeName());
-				writer.println(e.get(i).getRemindID());
-			}
-			writer.println(ev.getEventDate().getID());
-			writer.println(ev.getEventName());
-			writer.println(ev.getEventTypeName());
-			writer.println(ev.getRemindID());
-			writer.close();
-		}
-		catch (Exception exc) {
-			
-		}
-	}
-	
+
 	public void writeFile() {
 		LinkedList<Event> e = this.eventList;
 		try{

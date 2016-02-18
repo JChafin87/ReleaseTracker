@@ -16,12 +16,7 @@ public class EventDate {
 		eventID = 20150102;
 	}
 	
-	public EventDate(String e, String d, String y) {
-		eventMonth = e;
-		eventDay = d;
-		eventYear = y;
-		eventID = 00000000;
-	}
+
 	
 	public EventDate(int y, int m, int d) {
 		eventYear = String.valueOf(y);

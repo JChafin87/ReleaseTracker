@@ -22,37 +22,30 @@ import javax.swing.JLabel;
 public class UpcomingEventGUI extends JFrame implements ActionListener{
 
 	private JPanel contentPane;
-	private JTable table;
-	private JTable table1;
-	private DefaultTableModel nrTable;
-	private LinkedList<Event> urList;
+	private JTable userTable;
+	private DefaultTableModel ueTable;
+	private JButton btnAddEvent;
+	private JButton btnRemoveEvent;
+	private LinkedList<Event> ueList;
 	
 	
 	
 	public void actionPerformed(ActionEvent e) {
 		int action = Integer.parseInt(e.getActionCommand());
-		int rowSelected = table1.getSelectedRow();
+		int rowSelected = userTable.getSelectedRow();
 		switch (action) {
 		case 0: //Add Event
 			AddEventGUI newAE=new AddEventGUI();
 			newAE.openAE();
 			break;
-		case 1: //Change Date
-			
-			int selectedDate = urList.get(rowSelected).getRemindID();
-			String selectedName = urList.get(rowSelected).getEventName();
-			System.out.println(selectedName+selectedDate);
-			int dateValue = urList.get(rowSelected).getEventDate().getID();
-			ChangeDateGUI newCD=new ChangeDateGUI();
-			int newDateValue = newCD.openCD(selectedName, selectedDate);
-			System.out.println(newDateValue);
+
 		case 2:
 			EventList newList = new EventList();
 			newList.readFile();
 			int opt = JOptionPane.YES_NO_OPTION;
 			int confirm2 = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this event?", "Warning", opt);
 			if (confirm2 == 0) {
-				newList.remove(urList.get(rowSelected));
+				newList.remove(ueList.get(rowSelected));
 				newList.writeFile();
 				setVisible(false);
 			}
@@ -97,7 +90,7 @@ public class UpcomingEventGUI extends JFrame implements ActionListener{
 		
 		//Create TableModel
 		String[] col1 = {"Date","Name","Type"};
-		nrTable = new DefaultTableModel(col1,0);
+		ueTable = new DefaultTableModel(col1,0);
 		
 		//temp variables to populate Table
 		EventDate tempDate = new EventDate();
@@ -111,7 +104,7 @@ public class UpcomingEventGUI extends JFrame implements ActionListener{
 		int todayID = Integer.valueOf(sdf.format(today.getTime()));
 		
 		//usrList will be an EventList with only upcoming release titles
-		urList = new LinkedList<Event>();
+		ueList = new LinkedList<Event>();
 		
 		//weeds out input file Events that have already released
 		for (int i = 0; i <eTable.getList().size();i++) {
@@ -124,29 +117,29 @@ public class UpcomingEventGUI extends JFrame implements ActionListener{
 				tempName = tempEvent.getEventName();
 				tempType = tempEvent.getEventTypeName();
 				Object[] data = {tempDateName, tempName, tempType};
-				urList.add(tempEvent);
-				nrTable.addRow(data);
+				ueList.add(tempEvent);
+				ueTable.addRow(data);
 			}
 		}
 		
-		table1 = new JTable(nrTable);
-		table1.setFont(new Font("Arial", Font.PLAIN, 10));
-		table1.setBackground(new Color(255, 255, 255));
-		JScrollPane tableContainer = new JScrollPane(table1);
+		userTable = new JTable(ueTable);
+		userTable.setFont(new Font("Arial", Font.PLAIN, 10));
+		userTable.setBackground(new Color(255, 255, 255));
+		JScrollPane tableContainer = new JScrollPane(userTable);
 		
 		
 		
 		tableContainer.setBounds(10, 23, 414, 228);
 		contentPane.add(tableContainer);
 		
-		JButton btnAddEvent = new JButton("Add Event");
+		btnAddEvent = new JButton("Add Event");
 		btnAddEvent.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		btnAddEvent.addActionListener(this);
 		btnAddEvent.setActionCommand("0");
 		btnAddEvent.setBounds(34, 278, 89, 23);
 		contentPane.add(btnAddEvent);
 		
-		JButton btnRemoveEvent = new JButton("Remove Event");
+		btnRemoveEvent = new JButton("Remove Event");
 		btnRemoveEvent.addActionListener(this);
 		btnRemoveEvent.setActionCommand("2");
 		btnRemoveEvent.setFont(new Font("Tahoma", Font.PLAIN, 10));

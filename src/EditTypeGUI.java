@@ -29,11 +29,10 @@ public class EditTypeGUI extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 	private JButton btnAdd;
-	private JLabel lblSelectTypeTo;
-	private JComboBox comboBox;
+	private JComboBox typeBox;
 	private JButton btnRemove;
-	private JTextField textField;
-	private String type;
+	private JTextField newTypeField;
+	private String type ="Choose Type";
 	private JFrame frame;
 	
 	public void actionPerformed(ActionEvent e) {
@@ -41,7 +40,7 @@ public class EditTypeGUI extends JFrame implements ActionListener {
 		switch(action) {
 		case 0: 
 			String s;
-			s = textField.getText().toString();
+			s = newTypeField.getText().toString();
 			TypeList t = new TypeList();
 			t.readFile();
 			t.add(s);
@@ -61,23 +60,21 @@ public class EditTypeGUI extends JFrame implements ActionListener {
 			TypeList t1 = new TypeList();
 			t1.readFile();
 			String toRemove = this.type;
-			if (toRemove == null) toRemove = t1.getTypes().get(0);
-			int opt = JOptionPane.YES_NO_OPTION;
-			int confirm2 = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete Event Type: " + toRemove +"?", "Warning", opt);
-			if (confirm2 == 0) {
-				if(toRemove != null) {
-					t1.remove(toRemove);
-					t1.writeFile();
-					setVisible(false);
-				}
-				else {
-					t1.remove(0);
-					t1.writeFile();
-					
-				}
+			if (toRemove.equals("Choose Type")) {
+				JOptionPane.showMessageDialog(frame, "Please choose a type to remove");
+				
 			}
 			else {
-				
+				int opt = JOptionPane.YES_NO_OPTION;
+				int confirm2 = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete Event Type: " + toRemove +"?", "Warning", opt);
+				if (confirm2 == 0) {
+						t1.remove(0);
+						t1.writeFile();
+						
+				}
+				else {
+					
+				}
 			}
 			break;
 		
@@ -124,15 +121,15 @@ public class EditTypeGUI extends JFrame implements ActionListener {
 		gbc_lblAddNewType.gridy = 1;
 		contentPane.add(lblAddNewType, gbc_lblAddNewType);
 		
-		textField = new JTextField();
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.gridwidth = 2;
-		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField.insets = new Insets(0, 0, 5, 5);
-		gbc_textField.gridx = 2;
-		gbc_textField.gridy = 1;
-		contentPane.add(textField, gbc_textField);
-		textField.setColumns(10);
+		newTypeField = new JTextField();
+		GridBagConstraints gbc_newTypeField = new GridBagConstraints();
+		gbc_newTypeField.gridwidth = 2;
+		gbc_newTypeField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_newTypeField.insets = new Insets(0, 0, 5, 5);
+		gbc_newTypeField.gridx = 2;
+		gbc_newTypeField.gridy = 1;
+		contentPane.add(newTypeField, gbc_newTypeField);
+		newTypeField.setColumns(10);
 		
 		btnAdd = new JButton("Add");
 		btnAdd.addActionListener(this);
@@ -144,7 +141,7 @@ public class EditTypeGUI extends JFrame implements ActionListener {
 		gbc_btnAdd.gridy = 1;
 		contentPane.add(btnAdd, gbc_btnAdd);
 		
-		lblSelectTypeTo = new JLabel("Select Type to Remove");
+		JLabel lblSelectTypeTo = new JLabel("Select Type to Remove");
 		GridBagConstraints gbc_lblSelectTypeTo = new GridBagConstraints();
 		gbc_lblSelectTypeTo.anchor = GridBagConstraints.WEST;
 		gbc_lblSelectTypeTo.insets = new Insets(0, 0, 5, 5);
@@ -152,19 +149,19 @@ public class EditTypeGUI extends JFrame implements ActionListener {
 		gbc_lblSelectTypeTo.gridy = 3;
 		contentPane.add(lblSelectTypeTo, gbc_lblSelectTypeTo);
 		
-		comboBox = new JComboBox();
+		typeBox = new JComboBox();
 		TypeList tL = new TypeList();
 		tL.readFile();
-		comboBox.setModel(new DefaultComboBoxModel(tL.toStringArray()));
-		comboBox.addActionListener(this);
-		comboBox.setActionCommand("1");
-		GridBagConstraints gbc_comboBox = new GridBagConstraints();
-		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
-		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBox.gridwidth = 2;
-		gbc_comboBox.gridx = 2;
-		gbc_comboBox.gridy = 3;
-		contentPane.add(comboBox, gbc_comboBox);
+		typeBox.setModel(new DefaultComboBoxModel(tL.toStringArray()));
+		typeBox.addActionListener(this);
+		typeBox.setActionCommand("1");
+		GridBagConstraints gbc_typeBox = new GridBagConstraints();
+		gbc_typeBox.insets = new Insets(0, 0, 5, 5);
+		gbc_typeBox.fill = GridBagConstraints.HORIZONTAL;
+		gbc_typeBox.gridwidth = 2;
+		gbc_typeBox.gridx = 2;
+		gbc_typeBox.gridy = 3;
+		contentPane.add(typeBox, gbc_typeBox);
 		
 		btnRemove = new JButton("Remove");
 		btnRemove.setActionCommand("2");
