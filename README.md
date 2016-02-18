@@ -8,15 +8,9 @@ This application allows the user to create a list of upcoming releases they are 
 
 #Running the Program
 
-There are multiple ways to access this program. It can be compiled and ran with any Java IDE, but since I created the project using Eclipse, I will explain how to run the program through Eclipse. Feel free to use any Java IDE or compiler you wish.
+The program requires a compiler compliance level of Java 1.7 to run.
 
-1. [Download Eclipse](http://www.eclipse.org/downloads/packages/release/Kepler/SR2) and install it.
-
-2. Download the ReleaseTracker git repository as a .zip file and extract it to your system.
-
-3. Open Eclipse and select File-\>Import-\>General-\>Existing Projects into WorkSpace. Click Next, then click Browse for root directory and locate your extracted BaseballStatFinder-master. Click Next and then Finish. 
-
-4. Click 'Run' on the toolbar to launch the application.
+To execute the program simply download the repository, compile the code, and run.
 
 .
 
@@ -25,18 +19,18 @@ There are multiple ways to access this program. It can be compiled and ran with 
 ReleaseTracker contains 9 classes, 5 of which are GUIs.
 
 ----
-###Event
+###Class: Event
 ----
 
 This is a user defined class that holds all of the information for a specific release event.
 
 ####Constructor
 
-Event()
+public Event()
 
 _Creates an empty Event._
 
-Event(String eN, EventDate eD, String eT, int rID)
+public Event(String eN, EventDate eD, String eT, int rID)
 
 _Creates an event where Event name is eN, Event date is eD, Event type is eT and Remind ID is rID._
 
@@ -76,18 +70,18 @@ _Creates an event where Event name is eN, Event date is eD, Event type is eT and
 |		| _Displays the Event as a String._ |
 
 ---
-###EventDate
+###Class: EventDate
 ---
 
 This is a user defined class that holds all of the information for a specific release event date.
 
 ####Constructor
 
-EventDate(int y, int m, int d)
+public EventDate(int y, int m, int d)
 
 Creates a new EventDate where year = y, month = m, day = d.
 
-EventDate(int x)
+public EventDate(int x)
 
 Creates an EventDate from a 8 digit integer. The value of the passed integer will be in the format: yyyyMMdd. (E.g. July 4, 2016 would be "20160704")  
 
@@ -122,18 +116,18 @@ Creates an EventDate from a 8 digit integer. The value of the passed integer wil
 | | _Displays the EventDate as a String._ |
 
 ---
-###EventList
+###Class: EventList
 ---
 
 A class that contains a collection of Event objects.
 
 ####Constructors
 
-EventList()
+public EventList()
 
 Initializes an empty EventList.
 
-EventList(Event e)
+public EventList(Event e)
 
 Initializes a new EventList and adds Event e to the list.
 
@@ -161,7 +155,7 @@ Initializes a new EventList and adds Event e to the list.
 
 
 ---
-###TypeList
+###Class: TypeList
 ---
 
 A list of the user's event types or categories. This class is used to populate JComboBoxes with the user's saved types.
@@ -200,14 +194,14 @@ Initializes an empty TypeList.
 | | _Writes and replaces the data in file "types.dat" with the current TypeList data._ |
 
 ---
-###ReleaseTrackerGUI
+###Class: ReleaseTrackerGUI
 ---
 
 This is the main GUI of ReleaseTracker. 
 
 ####Constructor
 
-ReleaseTrackerGUI() 
+public ReleaseTrackerGUI() 
 
 Initializes a new ReleaseTrackerGUI frame.
 
@@ -251,14 +245,14 @@ Creates new AddEventGUI window.
 
 
 ---
-###EditTypeGUI
+###Class: EditTypeGUI
 ---
 
 The GUI that displays the user's saved types. Allows them to add a new event type or remove an old one. It implements the class ActionListener.
 
 ###Constructor
 
-EditTypeGUI()
+public EditTypeGUI()
 
 Creates a new instance of the EditTypeGUI.
 
@@ -284,14 +278,14 @@ Creates a new instance of the EditTypeGUI.
 | | _Method to initialize EditTypeGUI from a separate JFrame._ |
 
 ---
-###NewReleaseGUI
+###Class: NewReleaseGUI
 ---
 
 A window that shows the user's saved events, where the event's release date is on or  before the current calendar day. It implements the Class ActionListener.
 
 ####Constructor
 
-NewReleaseGUI()
+public NewReleaseGUI()
 
 Creates a new NewReleaseGUI window.
 
@@ -316,14 +310,14 @@ Creates a new NewReleaseGUI window.
 
 
 ---
-###UpcomingEventGUI
+###Class: UpcomingEventGUI
 ---
 
 A window that shows the user's saved events, where the event's release date is after the current calendar day. It implements the Class ActionListener.
 
 ####Constructor
 
-UpcomingEventGUI()
+public UpcomingEventGUI()
 
 Creates a new UpcomingEventGUI window.
 
