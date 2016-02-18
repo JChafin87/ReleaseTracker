@@ -141,7 +141,7 @@ Initializes a new EventList and adds Event e to the list.
 | Attribute | Description|
 | ------------- |:-------------:|
 | public LinkedList\<Event\> eventList | A collection of Events to populate the GUIs. |
-| public boolean empty| A value that equals true if our EventList is empty. |
+| public boolean empty| A value that equals true if the EventList is empty. |
 
 ####Methods
 
@@ -152,7 +152,7 @@ Initializes a new EventList and adds Event e to the list.
 | LinkedList\<Event\> | **getList**() |
 | | _Returns the EventList eventList attribute._ |
 | void | **readFile**() |
-| | _Reads from inputfile "events.dat" and saves the data to the EventList._ |
+| | _Reads from input file "events.dat" and saves the data to the EventList._ |
 | void | **remove**(Event ev) |
 | | _Checks if Event ev is in the EventList and removes it._ |
 | void | **writeFile**() |
@@ -226,14 +226,14 @@ Creates new GUI frame.
 
 | Attribute | Description |
 | ------------- |:-------------:|
-| private JFrame frame | The JFrame that holds our swing objects. |
+| private JFrame frame | The JFrame that holds the window's swing objects. |
 | private JTextField nameField | The name (title) of the event to be added. |
 | public JComboBox monthBox | JComboBox that holds the event's month value. |
 | public JComboBox dayBox | JComboBox that holds the event's day value. |
 | public JComboBox yearBox | JComboBox that holds the event's year value. |
 | public JComboBox typeBox | JCombBox that holds the event's type value. |
 | public JButton btnAddEvent | JButton that captures the values of the JComboBoxes and adds event to EventList |
-| public int[] comboValues | A size three array that holds Event Year,Event Month, Event Day |
+| public int[] comboValues | A size three array that holds Event Year, Event Month, Event Day |
 | public String typeSelected | The value of the typeBox. Used to ensure the user has selected a valid type. |
 | public int dateInt | A 8-digit value that represents the Event's date (yyyyMMdd). Used to create the EventDate object for the Event to add. |
 
@@ -271,7 +271,7 @@ Creates a new instance of the EditTypeGUI.
 | private JButton btnRemove | A JButton that removes the event type in typeBox from the user's saved event types. |
 | private JTextField newTypeField | A JTextField that holds the value of the user's new type to be added to TypeList |
 | private String type | The value of typeBox. Used to ensure the user has selected a valid type to remove. |
-| private JFrame frame | The JFrame that holds our Swing objects. |
+| private JFrame frame | The JFrame that holds the window's Swing objects. |
 
 ####Methods
 
@@ -298,11 +298,11 @@ Creates a new NewReleaseGUI window.
 
 | Attribute | Description |
 | ------------- |:-------------:|
-| private JPanel contentPane | The container of our Swing objects. |
-| private JTable userTable | The Swing object JTable that holds our table information. |
-| private DefaultTableModel nrTable | The table model that holds our user's newly released Events. |
+| private JPanel contentPane | The container of the window's Swing objects. |
+| private JTable userTable | The Swing object JTable that holds the table information. |
+| private DefaultTableModel nrTable | The table model that holds the user's newly released Events. |
 | private JButton btnRemoveEvent | A JButton that allows the user to remove the event they've selected from their EventList. |
-|private LinkedList\<Event\> nrList | A LinkedList that holds our newly released events. This is needed if the user selects to remove an event from the table. |
+|private LinkedList\<Event\> nrList | A LinkedList that holds the user's newly released events. This is needed if the user selects to remove an event from the table. |
 
 ####Methods
 
@@ -330,12 +330,12 @@ Creates a new UpcomingEventGUI window.
 
 | Attribute | Description |
 | ------------- |:-------------:|
-| private JPanel contentPane | The container of our Swing objects. |
-| private JTable userTable | The Swing object JTable that holds our table information. |
-| private DefaultTableModel ueTable | The table model that holds our user's upcoming Events. |
+| private JPanel contentPane | The container of the window's Swing objects. |
+| private JTable userTable | The Swing object JTable that holds the table information. |
+| private DefaultTableModel ueTable | The table model that holds the user's upcoming Events. |
 | private JButton btnAddEvent | A JButton that opens a new AddEventGUI. |
 | private JButton btnRemoveEvent | A JButton that allows the user to remove the event they've selected from their EventList. |
-|private LinkedList\<Event\> ueList | A LinkedList that holds our upcoming release Events. This is needed if the user selects to remove an event from the table. |
+|private LinkedList\<Event\> ueList | A LinkedList that holds the user's upcoming release Events. This is needed if the user selects to remove an event from the table. |
 
 ####Methods
 
