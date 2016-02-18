@@ -2,7 +2,7 @@
 
 #Project Summary
 
-This application allows the user to create a list of upcoming releases they are interested in. It works similar to a calendar, but somewhat different. Let's say I want to buy a DVD that's being released on March 2nd. If I add that event on a calendar, but don't have a chance to buy the DVD until a month later, there's a chance I might forget that it came out. If I add that DVD release to ReleaseTracker, it will stay in my "Newly Released" list until I've bought the DVD and removed it from my list. The application also shows a list of upcoming events that have entered into the application through the "Upcoming Releases" list.
+This application allows the user to create a list of upcoming releases they are interested in. It works similar to a calendar, but somewhat different. Let's say I want to buy a DVD that's being released on March 2nd. If I add that event on a calendar, but don't have a chance to buy the DVD until a month later, there's a chance I might forget that it came out. If I add that DVD release to ReleaseTracker, it will stay in my "Newly Released" list until I've bought the DVD and/or removed it from my list. The application also shows a list of upcoming events that have entered into the application through the "Upcoming Releases" list.
 
 .
 
@@ -348,22 +348,3 @@ Creates a new UpcomingEventGUI window.
 
 
 -
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
