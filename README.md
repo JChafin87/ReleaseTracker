@@ -52,14 +52,41 @@ _Creates an event where Event name is eN, Event date is eD, Event type is eT and
 ####Methods
 | Returns | Method|
 | ------------- |:-------------:|
-| String     | getEventName() |
-|      |  _A method that reads all of the players’ name data from the input file “MasterCurrent.csv” and stores these values into the “players” attribute._  | 
-| void     | **readStats**(String yearValue) |
-|      |  _A method that reads the players’ stats from the input file “BattingCurrent.csv” and saves these values to the “stats” attribute. yearValue represents the year value of the stats you want to return. (i.e. if yearValue = “1997”, “stats” will be all entries where the year is 1997.)_  |
-| String[]    | **findPlayer**(String playerID) |
-|      |  _A method that returns a player’s name(first and last) by passing his unique playerID._  |
-| LinkedList\<String[]\>     | **findPlayers**(float[] paramValues) |
-|      |  _A method that returns a Linked List of player stats that match the paramValues. (See Class BasePlayerFinder for more info on “paramValues”)._  |
+| int    | **compareTo**(Event e) |
+|      |  _A method used by the class EventList to arrange the list in chronological order._ | 
+| EventDate    | **getEventDate**() |
+|      |  _Returns the value of the Event's EventDate._ |
+| String    |**getEventName**() |
+|      |  _Returns the Event's name or title._  |
+| EventType     | **getEventTypeName**() |
+|      |  _Returns the Event's type (category)._  |
+| int    | **getRemindID**() |
+|      |  _Returns the Event's remindID._ | 
+| void    | **remindChange**(int i) |
+|      |  _Adds the value of i to the remindID._ |
+| void    |**setEventDate**(EventDate eventDate) |
+|      |  _Sets the Event's Date to the passed parameter._  |
+| void     | **setEventName**(String eventName) |
+|      |  _Sets the Event's name to the passed parameter._  |
+| void | **setEventTypeName**(String eventTypeName) |
+|		| _Sets the Event's type(category) to the passed parameter._ |
+| void | **setRemindID**(int remindID) |
+|		| _Sets the Event's remindID to the passed parameter._ |
+| String | **toString**() |
+|		| _Displays the Event as a String._ |
+
+
+
+
+
+
+
+
+
+
+setRemindID(int remindID)
+
+
 
 
 
