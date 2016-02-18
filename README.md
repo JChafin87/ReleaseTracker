@@ -177,6 +177,117 @@ Initializes an empty TypeList.
 | ------------- |:-------------:|
 | LinkedList\<String\> types | A list of the user's saved types (categories) |
 
+####Methods
+
+| Returns | Method|
+| ------------- |:-------------:|
+| void | **add**(String s) |
+| | _Adds a new type "s" to TypeList._ |
+| LinkedList\<String\> | **getTypes**() |
+| | _Returns the typeList attribute._ |
+| void | **readFile**() |
+| | _Reads the user's saved types from "types.dat"._ |
+| void | **remove**(int i) |
+| | _Removes the type from typeList and index i._ |
+| void |**remove**(String s) |
+| | _Removes the type that is equal to String s._ |
+| void | **setTypes**(LinkedList\<String\> t)|
+| | _Set the attribute "types" to LinkedList t._ |
+| String [] | **toStringArray**() |
+| | _Converts the LinkedList "types" attribute to a String[]._|
+| void | **writeFile**() |
+| | _Writes and replaces the data in file "types.dat" with the current TypeList._ |
+
+---
+###ReleaseTrackerGUI
+---
+
+This is the main GUI of ReleaseTracker. 
+
+####Constructor
+
+ReleaseTrackerGUI() 
+
+Initializes a new ReleaseTrackerGUI frame.
+
+---
+###AddEventGUI
+---
+
+This is the GUI where the user adds a new event to be tracked.
+
+####Constructor
+
+AddEventGUI()
+
+Creates new GUI frame.
+
+####Attributes
+
+| Attribute | Description |
+| ------------- |:-------------:|
+| private JFrame frame | The JFrame that holds our swing objects. |
+| private JTextField nameField | The name (title) of the event to be added. |
+| public JComboBox monthBox | JComboBox that holds the event's month value. |
+| public JComboBox dayBox | JComboBox that holds the event's day value. |
+| public JComboBox yearBox | JComboBox that holds the event's year value. |
+| public JComboBox typeBox | JCombBox that holds the event's type value. |
+| public JButton btnAddEvent | JButton that captures the values of the JComboBoxes and adds event to EventList |
+| public int[] comboValues | A size three array that holds Event Year,Event Month, Event Day |
+| public String typeSelected | The value of the typeBox. Used to ensure the user has selected a valid type. |
+| public int dateInt | A 8-digit value that represents the Event's date (yyyyMMdd). Used to create the EventDate object for the Event to add. |
+
+####Methods
+
+| Returns | Method|
+| ------------- |:-------------:|
+| void | **actionPerformed**(ActionEvent e) |
+| | _Overrides method in ActionListener. Used to capture the user's interactions with the frame's Swing objects._ |
+| void | **initialize**() |
+| | _Initializes the AddEventGUI._ |
+| | **openAE**() |
+| | _Method to initialize AddEventGUI from a separate JFrame._ |
+
+
+---
+###EditTypeGUI
+---
+
+The GUI that displays the user's saved types. Allows them to add a new event type or remove an old one. It implements the class ActionListener.
+
+###Constructor
+
+EditTypeGUI()
+
+Creates a new instance of the EditTypeGUI.
+
+###Attributes
+
+| Attribute | Description |
+| ------------- |:-------------:|
+| private JPanel contentPane | A JPanel to display objects |
+| private JButton btnAdd | A JButton that adds the user's new event type. |
+| private JComboBox typeBox | A JComboBox that holds the user's previous event types. |
+| private JButton btnRemove | A JButton that removes the event type in typeBox from the user's saved event types. |
+| private JTextField newTypeField | A JTextField that holds the value of the user's new type to be added to TypeList |
+| private String type | The value of typeBox. Used to ensure the user has selected a valid type to remove. |
+| private JFrame frame | The JFrame that holds our Swing objects. |
+
+####Methods
+
+| Returns | Method|
+| ------------- |:-------------:|
+| void | **actionPerformed**(ActionEvent e) |
+| | _Overrides method in ActionListener. Used to capture the user's interactions with the frame's Swing objects._ |
+| | **openET**() |
+| | _Method to initialize EditTypeGUI from a separate JFrame._ |
+
+
+
+
+-
+
+
 
 
 
