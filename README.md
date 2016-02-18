@@ -245,7 +245,7 @@ Creates new GUI frame.
 | | _Overrides method in ActionListener. Used to capture the user's interactions with the frame's Swing objects._ |
 | void | **initialize**() |
 | | _Initializes the AddEventGUI._ |
-| | **openAE**() |
+| void | **openAE**() |
 | | _Method to initialize AddEventGUI from a separate JFrame._ |
 
 
@@ -279,7 +279,7 @@ Creates a new instance of the EditTypeGUI.
 | ------------- |:-------------:|
 | void | **actionPerformed**(ActionEvent e) |
 | | _Overrides method in ActionListener. Used to capture the user's interactions with the frame's Swing objects._ |
-| | **openET**() |
+| void | **openET**() |
 | | _Method to initialize EditTypeGUI from a separate JFrame._ |
 
 
