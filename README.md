@@ -46,14 +46,14 @@ _Creates an event where Event name is eN, Event date is eD, Event type is eT and
 | public String eventName    | The name or title of the event. |
 | public EventDate eventDate    | The date of the event's release (see class EventDate).     | 
 | public String eventTypeName    | The category of the event.  |
-| public int remindID    | An integer representation of the date to inform the user that the event has been released.     | 
+| public int remindID    | An integer representation of the date to inform the user that the event has been released. The form is equal to yyyyMMdd.     | 
 
 
 ####Methods
 | Returns | Method|
 | ------------- |:-------------:|
 | int    | **compareTo**(Event e) |
-|      |  _A method used by the class EventList to arrange the list in chronological order._ | 
+|      |  _A method used by the class EventList to arrange the list in chronological order. Overrides Comparable._ | 
 | EventDate    | **getEventDate**() |
 |      |  _Returns the value of the Event's EventDate._ |
 | String    |**getEventName**() |
@@ -75,6 +75,50 @@ _Creates an event where Event name is eN, Event date is eD, Event type is eT and
 | String | **toString**() |
 |		| _Displays the Event as a String._ |
 
+---
+###EventDate
+---
+Stores the date of the event's release.
+
+####Constructor
+
+EventDate(int y, int m, int d)
+
+Creates a new EventDate where year = y, month = m, day = d.
+
+EventDate(int x)
+
+Creates an EventDate from a 8 digit integer. The value of the passed integer will be in the form of yyyyMMdd. 
+
+####Attributes
+
+| Attribute | Description|
+| ------------- |:-------------:|
+| public String eventYear | The year the event is released. |
+| public String eventMonth | The month the event is released. |
+| public String eventDay | The day the event is released. |
+| public Integer eventID | A numerical representation of the Event's release date. The format is yyyyMMdd. (E.g. 20161107 would be November 7, 2016) |
+
+####Methods
+
+| Returns | Method|
+| ------------- |:-------------:|
+| String | **getEventDay**() |
+| | _Returns the Event's day value._ |
+| String | **getEventMonth**() |
+| | _Returns the Event's month value._ |
+| String | **getEventYear**() |
+| | _Returns the Event's year value._ |
+| Integer | **getID**() |
+| | _Return's the Event's eventID._ |
+| void | **setEventDay**(String eventDay) |
+| | _Sets the Event's day to the passed value._ |
+| void | **setEventMonth**(String eventMonth) |
+| | _Sets the Event's month to the passed value._ |
+| void | **setEventYear**(String eventYear) |
+| | _Sets the Event's year to the passed value._ |
+| String | **toString**() |
+| | _Displays the EventDate as a String._ |
 
 
 
@@ -84,7 +128,6 @@ _Creates an event where Event name is eN, Event date is eD, Event type is eT and
 
 
 
-setRemindID(int remindID)
 
 
 
