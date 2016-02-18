@@ -22,7 +22,7 @@ There are multiple ways to access this program. It can be compiled and ran with 
 
 #Classes Documentation
 
-ReleaseTracker contains 10 classes, 5 of which are GUIs.
+ReleaseTracker contains 9 classes, 5 of which are GUIs.
 
 ----
 ###Event
@@ -58,7 +58,7 @@ _Creates an event where Event name is eN, Event date is eD, Event type is eT and
 |      |  _Returns the value of the Event's EventDate._ |
 | String    |**getEventName**() |
 |      |  _Returns the Event's name or title._  |
-| EventType     | **getEventTypeName**() |
+| String    | **getEventTypeName**() |
 |      |  _Returns the Event's type (category)._  |
 | int    | **getRemindID**() |
 |      |  _Returns the Event's remindID._ | 
@@ -119,6 +119,67 @@ Creates an EventDate from a 8 digit integer. The value of the passed integer wil
 | | _Sets the Event's year to the passed value._ |
 | String | **toString**() |
 | | _Displays the EventDate as a String._ |
+
+---
+###EventList
+---
+
+A class that contains a collection of Event objects.
+
+####Constructors
+
+EventList()
+
+Initializes an empty EventList
+
+EventList(Event e)
+
+Initializes a new EventList and adds Event e to the list.
+
+####Attributes
+
+| Attribute | Description|
+| ------------- |:-------------:|
+| public LinkedList\<Event\> eventList | A collection of Events to populate the GUIs. |
+| public boolean empty| A value that equals true if our EventList is empty. |
+
+####Methods
+
+| Returns | Method|
+| ------------- |:-------------:|
+| void | **add**(Event ev) |
+| | _Adds a new Event to the EventList._ |
+| LinkedList\<Event\> | **getList**() |
+| | _Returns the EventList eventList attribute._ |
+| void | **readFile**() |
+| | _Reads from inputfile "events.dat" and saves the data to the EventList._ |
+| void | **remove**(Event ev) |
+| | _Checks if Event ev is in the EventList and removes it._ |
+| void | **writeFile**() |
+| | _Writes and replaces the current data to "events.dat" |
+
+
+---
+###TypeList
+---
+
+A list of the user's event types or categories. This class is used to populate JComboBoxes with the user's saved types.
+
+####Constructor
+
+public TypeList()
+
+Initializes an empty TypeList.
+
+####Attributes
+
+| Attribute | Description|
+| ------------- |:-------------:|
+| LinkedList\<String\> types | A list of the user's saved types (categories) |
+
+
+
+
 
 
 
